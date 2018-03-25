@@ -60,43 +60,4 @@ public class Graph {
 
         return neighbours;
     }
-
-    public static void main(String[] args){
-
-      Vertex v2 = new Vertex("2","");
-      Vertex v3 = new Vertex("3","");
-      Vertex v6 = new Vertex("6","");
-      Vertex v9  = new Vertex("9","");
-      Vertex v7  = new Vertex("7","");
-      Vertex v8  = new Vertex("8","");
-      Edge e1 = new Edge("1", v2, v3, 1);
-      Edge e2 = new Edge("2", v3, v6, 1);
-      Edge e3 = new Edge("3", v3, v7, 1);
-      Edge e4 = new Edge("4", v9, v7, 1);
-      Edge e5 = new Edge("5", v7, v8, 1);
-      List<Vertex> v = new ArrayList<>();
-      List<Edge> e = new ArrayList<>();
-      v.add(v2);
-      v.add(v3);
-      v.add(v6);
-      v.add(v9);
-      v.add(v7);
-      v.add(v8);
-      e.add(e1);
-      e.add(e2);
-      e.add(e3);
-      e.add(e4);
-      e.add(e5);
-      Graph g = new Graph(v,e);
-      System.out.println(g.adjacent("2","3"));
-      System.out.println(g.adjacent("2","7"));
-      List<Vertex> n = new ArrayList<>();
-      n = g.getNeighbours("7");
-      for(int i = 0; i<n.size(); i++)
-      System.out.println(n.get(i).getId());
-
-
-
-    }
-
 }
