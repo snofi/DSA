@@ -3,7 +3,7 @@ import java.util.*;
 public class MergeSort<E> implements Comparator<E>{
 
   public List<E> mergeSort(List<E> list){
-    //if(list.size()<=1) return list;
+    if(list.size()<=1) return list;
     if(list.size()<20) return bubbleSort(list);
     int mid = list.size()/2;
     List<E> l1 = new ArrayList<>();
@@ -18,26 +18,27 @@ public class MergeSort<E> implements Comparator<E>{
   public List<E> merge(List<E> l1, List<E> l2){
 
     List<E> result = new ArrayList<>();
-
-    while(l1.size()>0 && l2.size()>0){
-      if (compare(l1.get(0),l2.get(0))<=0){
-        result.add(l1.get(0));
-        l1.remove(0);
+    int a=0, b=0;
+    while(a< l1.size()&&  b<l2.size()){
+      if (compare(l1.get(a),l2.get(b))<=0){
+        result.add(l1.get(a));
+        a++;
       }
       else{
-        result.add(l2.get(0));
-        l2.remove(0);
+        result.add(l2.get(b));
+        b++;
       }
     }
-    if(l1.size()>0)
-      result.addAll(l1);
+    if(a < l1.size())
+      for(int i=a; i<l1.size(); i++)
+        result.add(l1.get(i));
     else
-      result.addAll(l2);
+      for(int i=b; i<l2.size(); i++)
+        result.add(l2.get(i));
 
     return result;
-    
+
   }
-  
   public List<E> bubbleSort(List<E> list){
     E tmp = null;
     for(int i = 0; i < list.size(); i++)
@@ -50,11 +51,13 @@ public class MergeSort<E> implements Comparator<E>{
     return list;
   }
 
-  public int compare(E a, E b){
+
+  public int compare(Object a, Object b){
     if((int)a < (int)b) return -1;
     else if((int)a==(int)b) return 0;
     else return 1;
   }
+
 
   public static void main(String[] args){
     MergeSort<Integer> m = new MergeSort<>();
@@ -72,4 +75,3 @@ public class MergeSort<E> implements Comparator<E>{
 
     System.out.println("Sorted in " +(endTime- startTime)/1000000 + " milliseconds");
   }
-}
